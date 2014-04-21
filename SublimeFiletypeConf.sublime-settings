@@ -3,7 +3,12 @@
     "default_filetype_package_map": {
         "python": "Packages/Python/Python.tmLanguage",
         "shell": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
-        "markdown": "Packages/Markdown/Markdown.tmLanguage"
+        "markdown": "Packages/Markdown/Markdown.tmLanguage",
+        "text": "Packages/Text/Plain text.tmLanguage",
+        "json": "Packages/JavaScript/JSON.tmLanguage",
+        "yaml": "Packages/YAML/YAML.tmLanguage",
+        "php": "Packages/PHP/PHP.tmLanguage",
+        "html": "Packages/HTML/HTML.tmLanguage"
     },
     "user_filetype_package_map": {}
 }
