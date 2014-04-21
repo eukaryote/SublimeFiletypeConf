@@ -73,13 +73,12 @@ I then symlinked that repo directory to
 
 Additionally, the default behavior is that a file is only parsed on load
 to detect the filetype mapping, so adding a mapping to a file and then saving
-the file won't change the syntax. This is to avoid having to reparse
-potentially very large files, because I'm not sure how the SublimeText API
-I'm using for finding a region matching a pattern handles extremely large
-files. To apply a new syntax after changing the mapping for a file, you can
-close the file and open it again, or use the 'reopen with encoding' feature
-of SublimeText, or you can add the following setting to check the file
-for a filetype mapping after every save:
+the file won't change the syntax. You'd have to either close and open the file
+or use the 'reopen with encoding' feature of SublimeText.
+
+If you'd prefer to have every file checked after every save, in order to avoid
+heeding to reopen the file, you can add the following setting to the user
+settings file:
 
 ``` json
 {
