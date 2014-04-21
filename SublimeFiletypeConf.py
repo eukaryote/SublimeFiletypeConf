@@ -16,7 +16,7 @@ def get_setting(name, default=None):
     return get_settings().get(name, default)
 
 
-def find_filetype(view):
+def parse_filetype(view):
     # find the region for the first filetype conf snippet
     region = view.find(SETTINGS_REGEX, 0)
     # if there is one, extract the filetype value from the snippet
@@ -49,7 +49,7 @@ def update_filetype(view, filetype):
 
 
 def process_view_filetype(view):
-    filetype = find_filetype(view)
+    filetype = parse_filetype(view)
     if filetype:
         update_filetype(view, filetype)
 
