@@ -77,7 +77,7 @@ the file won't change the syntax. You'd have to either close and open the file
 or use the 'reopen with encoding' feature of SublimeText.
 
 If you'd prefer to have every file checked after every save, in order to avoid
-heeding to reopen the file, you can add the following setting to the user
+needing to reopen the file, you can add the following setting to the user
 settings file:
 
 ``` json
