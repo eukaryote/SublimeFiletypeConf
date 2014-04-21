@@ -34,3 +34,9 @@ Status
 This is not ready for use yet, as nothing is yet configurable, and it only
 supports python, shell, and markdown syntax for now until I determine some
 the package paths to use for other filetypes.
+
+If you still want to try it out though, clone this repository and create a
+symlink for the repo into the ```Packages``` directory. On Linux, this means
+that after I cloned the repo as (for example) ```~/SublimeFiletypeConf```,
+I then symlinked that repo directory to 
+```~/.config/sublime-text-3/Packages/SublimeFiletypeConf```.
