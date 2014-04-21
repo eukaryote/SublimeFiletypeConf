@@ -1,4 +1,9 @@
 {
     "on_post_save": false,
-    "filetype_package_map": {}
+    "default_filetype_package_map": {
+        "python": "Packages/Python/Python.tmLanguage",
+        "shell": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
+        "markdown": "Packages/Markdown/Markdown.tmLanguage"
+    },
+    "user_filetype_package_map": {}
 }

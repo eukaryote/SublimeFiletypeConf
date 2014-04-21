@@ -6,12 +6,6 @@ from sublime_plugin import TextCommand, EventListener
 
 SETTINGS_REGEX = r'(?:sublimeconf):\s+filetype=([\w][\w\./ ]+)'
 
-DEFAULT_FILETYPE_MAP = {
-    'python': 'Packages/Python/Python.tmLanguage',
-    'shell': 'Packages/ShellScript/Shell-Unix-Generic.tmLanguage',
-    'markdown': 'Packages/Markdown/Markdown.tmLanguage'
-}
-
 
 def get_settings():
     filename = __name__.split('.')[-1] + '.sublime-settings'
@@ -31,11 +25,19 @@ def find_filetype(view):
 
 
 def filetype_to_package(filetype):
-    filetype_map = get_setting('filetype_package_map')
-    if filetype_map and filetype in filetype_map:
-        return filetype_map[filetype]
-    else:
-        return DEFAULT_FILETYPE_MAP.get(filetype)
+    """
+    Convert a filetype like 'python' to a package path like
+    'Packages/Python/Python.tmLanguage", by checking first the
+    'user_filetype_package_map' setting, and if not found there,
+    returning the mapping in 'default_filetype_package_map' if
+    there is one, and falling back to returning the 'filetype' itself,
+    which allows the user to specify a package path inline in the file
+    if they don't want to define a custom mapping in the settings file.
+    """
+    user_map = get_setting('user_filetype_package_map') or {}
+    default_map = get_setting('default_filetype_package_map') or {}
+    package = user_map.get(filetype, default_map.get(filetype, None))
+    return package or filetype
 
 
 def update_filetype(view, filetype):
