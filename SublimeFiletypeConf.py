@@ -1,10 +1,8 @@
 import re
 
+import sublime
 from sublime_plugin import TextCommand, EventListener
 
-## TODO: add settings to control whether we check on post_save as well as
-# on load, and perhaps allow a user-configurable filetype map and some
-# other niceties
 
 SETTINGS_REGEX = r'(?:sublimeconf):\s+filetype=([\w][\w\./ ]+)'
 
@@ -15,12 +13,29 @@ DEFAULT_FILETYPE_MAP = {
 }
 
 
+def get_settings():
+    filename = __name__.split('.')[-1] + '.sublime-settings'
+    return sublime.load_settings(filename)
+
+
+def get_setting(name, default=None):
+    return get_settings().get(name, default)
+
+
 def find_filetype(view):
     # find the region for the first filetype conf snippet
     region = view.find(SETTINGS_REGEX, 0)
     # if there is one, extract the filetype value from the snippet
     match = re.match(SETTINGS_REGEX, view.substr(region))
     return match.group(1) if match else None
+
+
+def filetype_to_package(filetype):
+    filetype_map = get_setting('filetype_package_map')
+    if filetype_map and filetype in filetype_map:
+        return filetype_map[filetype]
+    else:
+        return DEFAULT_FILETYPE_MAP.get(filetype)
 
 
 def update_filetype(view, filetype):
@@ -58,7 +73,8 @@ class DetectFiletypeEventListener(EventListener):
         process_view_filetype(view)
 
     def on_post_save(self, view):
-        process_view_filetype(view)
+        if get_setting('on_post_save'):
+            process_view_filetype(view)
 
 
 # sublimeconf: filetype=python
