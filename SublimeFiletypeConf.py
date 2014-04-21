@@ -39,16 +39,10 @@ def filetype_to_package(filetype):
 
 
 def update_filetype(view, filetype):
-    try:
-        new_filetype_path = DEFAULT_FILETYPE_MAP[filetype.lower()]
-    except AttributeError:
-        # use it as is, on the assumption that the user gave a complete path
-        # like 'Packages/Python/Python.tmLanguage' instead of just 'python'
-        new_filetype_path = filetype
-
+    new_filetype_path = filetype_to_package(filetype)
     # only set the syntax if it would change it from the current syntax
     curr_filetype_path = view.settings().get('syntax')
-    if new_filetype_path != curr_filetype_path:
+    if new_filetype_path and new_filetype_path != curr_filetype_path:
         view.set_syntax_file(new_filetype_path)
 
 
