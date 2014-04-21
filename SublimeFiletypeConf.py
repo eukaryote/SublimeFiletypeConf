@@ -4,7 +4,7 @@ import sublime
 from sublime_plugin import TextCommand, EventListener
 
 
-SETTINGS_REGEX = r'(?:sublimeconf):\s+filetype=([\w][\w\./ ]+)'
+SETTINGS_REGEX = r'(?:sublimeconf):\s+filetype=([\w][\w\./]+)'
 
 
 def get_settings():
