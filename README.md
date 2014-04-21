@@ -31,15 +31,58 @@ play with the SublimeText API for the first time.
 Status
 ------
 
-This is not ready for use yet, as nothing is yet configurable, and it only
-supports python, shell, and markdown syntax for now until I determine some
-the package paths to use for other filetypes.
+This plugin isn't yet stable, and is primarily for my own personal use, but
+it's public in case it's of use to anybody else. If anybody else actually
+ends up using this, then I might look into polishing things
+it up and getting it into [Package Control](https://sublime.wbond.net/) once
+things stabilize a bit more. Let me know if you'd be interested.
 
-If you still want to try it out though, clone this repository and create a
+
+Settings
+--------
+
+All the builtin SublimeText syntax types should be supported. See the
+```default_filetype_package_map``` in the
+```SublimeFiletypeConf.sublime-settings``` file for those mappings.
+
+You can define additional mappings in a user settings file by supplying
+a ```user_filetype_package_map``` property. For example, if you have
+defined a syntax file with a package path of
+```Packages/myfiletype/myfiletype.tmLanguage```, then you could define a
+mapping for that syntax by setting your user settings file to:
+
+``` json
+{
+    "user_filetype_package_map": {
+        "myfiletype": "Packages/myfiletype/myfiletype.tmLanguage"
+    }
+}
+```
+
+And then you would specify this syntax for a file by including
+```sublimeconf: filetype=myfiletype``` somewhere inside a file.
+
+To try out this plugin, clone this repository and create a
 symlink for the repo into the ```Packages``` directory. On Linux, this means
 that after I cloned the repo as (for example) ```~/SublimeFiletypeConf```,
 I then symlinked that repo directory to
 
 ```
 ~/.config/sublime-text-3/Packages/SublimeFiletypeConf
+```
+
+Additionally, the default behavior is that a file is only parsed on load
+to detect the filetype mapping, so adding a mapping to a file and then saving
+the file won't change the syntax. This is to avoid having to reparse
+potentially very large files, because I'm not sure how the SublimeText API
+I'm using for finding a region matching a pattern handles extremely large
+files. To apply a new syntax after changing the mapping for a file, you can
+close the file and open it again, or use the 'reopen with encoding' feature
+of SublimeText, or you can add the following setting to check the file
+for a filetype mapping after every save:
+
+``` json
+{
+    "on_post_save": true
+}
 ```
