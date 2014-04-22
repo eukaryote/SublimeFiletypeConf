@@ -99,7 +99,7 @@ settings file:
 
 ``` json
 {
-    "snippet_regex": "vim:\s+set\s+filetype=([\\w]+)"
+    "snippet_regex": "vim:\\s+set\\s+filetype=([\\w]+)"
 }
 ```
 
