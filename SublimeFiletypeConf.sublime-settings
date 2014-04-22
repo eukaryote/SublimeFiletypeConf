@@ -1,5 +1,6 @@
 {
     "on_post_save": false,
+    "snippet_regex": "(?:sublimeconf):\\s+filetype=([\\w][-\\w\\./\\+#]+)",
     "default_filetype_package_map": {
         "actionscript": "Packages/ActionScript/ActionScript.tmLanguage",
         "applescript": "Packages/AppleScript/AppleScript.tmLanguage",
