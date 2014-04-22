@@ -3,8 +3,8 @@ SublimeFiletypeConf
 
 [//]: # (sublimeconf: filetype=markdown)
 
-Introduction
-------------
+Overview
+========
 
 ```SublimeFiletypeConf``` is a very simple SublimeText3 plugin that sets the
 syntax for a file if it finds a certain configuration snippet inside the
@@ -29,7 +29,7 @@ verbose ```Packages/Python/Python.tmLanguage```. Plus, it gives me an excuse to
 play with the SublimeText API for the first time.
 
 Status
-------
+======
 
 This plugin isn't yet stable, and is primarily for my own personal use, but
 it's public in case it's of use to anybody else. If anybody else actually
@@ -37,13 +37,25 @@ ends up using it, then I might look into polishing it up
 and getting it into [Package Control](https://sublime.wbond.net/) once
 things stabilize a bit more. Let me know if you'd be interested.
 
+To try out the plugin, clone this repository and create a
+symlink for the repo into the ```Packages``` directory. On Linux, this means
+that after I cloned the repo as (for example) ```~/SublimeFiletypeConf```,
+I then symlinked that repo directory to
+
+```
+~/.config/sublime-text-3/Packages/SublimeFiletypeConf
+```
+
 
 Settings
---------
+========
 
 All the builtin SublimeText syntax types should be supported. See the
 ```default_filetype_package_map``` in the
 ```SublimeFiletypeConf.sublime-settings``` file for those mappings.
+
+user_filetype_package_map
+-------------------------
 
 You can define additional mappings in a user settings file by supplying
 a ```user_filetype_package_map``` property. For example, if you have
@@ -62,19 +74,14 @@ mapping for that syntax by setting your user settings file to:
 And then you would specify this syntax for a file by including
 ```sublimeconf: filetype=myfiletype``` somewhere inside a file.
 
-To try out this plugin, clone this repository and create a
-symlink for the repo into the ```Packages``` directory. On Linux, this means
-that after I cloned the repo as (for example) ```~/SublimeFiletypeConf```,
-I then symlinked that repo directory to
 
-```
-~/.config/sublime-text-3/Packages/SublimeFiletypeConf
-```
+on_post_save
+------------
 
-Additionally, the default behavior is that a file is only parsed on load
+The default behavior is that a file is only parsed on load
 to detect the filetype mapping, so adding a mapping to a file and then saving
 the file won't change the syntax. You'd have to either close and open the file
-or use the 'reopen with encoding' feature of SublimeText.
+or use the 'Reopen with Encoding' feature of SublimeText.
 
 If you'd prefer to have every file checked after every save, in order to avoid
 needing to reopen the file, you can add the following setting to the user
@@ -86,11 +93,16 @@ settings file:
 }
 ```
 
-Lastly, you can supply a custom regular expression if you want to use a
-different snippet syntax than the default one described above. The regex
-string you supply must escape any backslashes in the JSON, and when there is
-a match, there must be at least one group in the match, and the value that
-will be used from the match is the last group in the match.
+snippet_regex
+-------------
+
+If you wish to use a custom regular expression to match a text snippet that
+contains the filetype configuration, you can define one using the
+```snippet_regex``` setting in your user settings file.
+
+The regex string you supply must escape any backslashes in the JSON, and
+your regex should match the filetype value (the ```myfiletype``` in the
+example above) in the last group.
 
 For example, if you wanted to match a simplified Vim-modeline-like syntax
 that only allows ```vim:``` plus some whitespace and then a
@@ -103,6 +115,6 @@ settings file:
 }
 ```
 
-See the built-in ```snippet_regex``` for an example of a more complete
-regex that allows for more characters than the ```[\\w]``` character
-class given above.
+See the built-in ```snippet_regex``` in the default plugin settings file
+for an example of a more complete regex that allows for more characters
+than the ```[\\w]``` character class given above.
