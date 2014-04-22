@@ -24,8 +24,8 @@ found is processed.
 
 The [Modelines](https://github.com/SublimeText/Modelines) plugin provides
 this sort of functionality, and much else too, but I wanted a simpler syntax
-that allows me to specify the filetype as just 'python' rather than the
-verbose 'Packages/Python/Python.tmLanguage'. Plus, it gives me an excuse to
+that allows me to specify the filetype as just ```python``` rather than the
+verbose ```Packages/Python/Python.tmLanguage```. Plus, it gives me an excuse to
 play with the SublimeText API for the first time.
 
 Status
@@ -33,8 +33,8 @@ Status
 
 This plugin isn't yet stable, and is primarily for my own personal use, but
 it's public in case it's of use to anybody else. If anybody else actually
-ends up using this, then I might look into polishing things
-it up and getting it into [Package Control](https://sublime.wbond.net/) once
+ends up using it, then I might look into polishing it up
+and getting it into [Package Control](https://sublime.wbond.net/) once
 things stabilize a bit more. Let me know if you'd be interested.
 
 
@@ -85,3 +85,24 @@ settings file:
     "on_post_save": true
 }
 ```
+
+Lastly, you can supply a custom regular expression if you want to use a
+different snippet syntax than the default one described above. The regex
+string you supply must escape any backslashes in the JSON, and when there is
+a match, there must be at least one group in the match, and the value that
+will be used from the match is the last group in the match.
+
+For example, if you wanted to match a simplified Vim-modeline-like syntax
+that only allows ```vim:``` plus some whitespace and then a
+```set filetype=VALUE`` part, you could set the following in your user
+settings file:
+
+``` json
+{
+    "snippet_regex": "vim:\s+set\s+filetype=([\\w]+)"
+}
+```
+
+See the built-in ```snippet_regex``` for an example of a more complete
+regex that allows for more characters than the ```[\\w]``` character
+class given above.
