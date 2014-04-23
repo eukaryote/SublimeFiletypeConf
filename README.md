@@ -111,10 +111,10 @@ settings file:
 
 ``` json
 {
-    "snippet_regex": "vim:\\s+set\\s+filetype=([\\w]+)"
+    "snippet_regex": "vim:\\s+set\\s+filetype=(\\w+)"
 }
 ```
 
 See the built-in ```snippet_regex``` in the default plugin settings file
 for an example of a more complete regex that allows for more characters
-than the ```[\\w]``` character class given above.
+than the ```\\w+``` given above.
