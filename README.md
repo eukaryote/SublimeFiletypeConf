@@ -31,11 +31,11 @@ play with the SublimeText API for the first time.
 Status
 ======
 
-This plugin isn't yet stable, and is primarily for my own personal use, but
-it's public in case it's of use to anybody else. If anybody else actually
-ends up using it, then I might look into polishing it up
-and getting it into [Package Control](https://sublime.wbond.net/) once
-things stabilize a bit more. Let me know if you'd be interested.
+This plugin is primarily for my own personal use, but it's public in case
+it's of use to anybody else. If anybody else actually ends up using it,
+then I might look into polishing it up and getting it into
+[Package Control](https://sublime.wbond.net/). Let me know if you'd be
+interested in using it.
 
 To try out the plugin, clone this repository and create a
 symlink for the repo into the ```Packages``` directory. On Linux, this means
@@ -46,13 +46,20 @@ I then symlinked that repo directory to
 ~/.config/sublime-text-3/Packages/SublimeFiletypeConf
 ```
 
-
 Settings
 ========
 
 All the builtin SublimeText syntax types should be supported. See the
 ```default_filetype_package_map``` in the
 ```SublimeFiletypeConf.sublime-settings``` file for those mappings.
+
+The custom settings described below may be added to the user settings
+file for this plugin, which will be located in ```Packages/User```. On
+my Linux setup, this file is located at:
+
+```
+~/.config/sublime-text-3/Packages/User/SublimeFiletypeConf.sublime-settings
+```
 
 user_filetype_package_map
 -------------------------
