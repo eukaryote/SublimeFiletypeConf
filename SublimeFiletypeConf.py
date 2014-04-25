@@ -4,6 +4,34 @@ import sublime
 from sublime_plugin import TextCommand, EventListener
 
 
+class DetectFiletypeCommand(TextCommand):
+
+    """
+    Process the active view for a text snippet specifying a filetype
+    identifier (e.g., 'python' or 'shell'), and update the active syntax
+    for the view if a valid snippet is found.
+    """
+
+    def run(self, edit):
+        process_view_filetype(self.view)
+
+
+class DetectFiletypeEventListener(EventListener):
+
+    """
+    Check the active view for a filetype conf snippet when a view is initially
+    loaded, and optionally when a view is saved. The check after each save
+    only happens if the `on_post_save` option is set (not set by default).
+    """
+
+    def on_load(self, view):
+        process_view_filetype(view)
+
+    def on_post_save(self, view):
+        if get_setting('on_post_save'):
+            process_view_filetype(view)
+
+
 def load_settings():
     filename = __name__.split('.')[-1] + '.sublime-settings'
     return sublime.load_settings(filename)
@@ -21,9 +49,7 @@ def parse_filetype(view):
     needs it in, which is something like 'Packages/Python/Python.tmLanguage'.
     """
     snippet_regex = get_setting('snippet_regex')
-    # find the region for the first filetype conf snippet
     region = view.find(snippet_regex, 0)
-    # if there is one, extract the filetype value from the snippet
     match = re.match(snippet_regex, view.substr(region))
     if match and len(match.groups()) < 1:
         msg = "check your snippet_regex '%s':" + \
@@ -62,22 +88,3 @@ def process_view_filetype(view):
     filetype = parse_filetype(view)
     if filetype:
         update_filetype(view, filetype)
-
-
-class DetectFiletypeCommand(TextCommand):
-
-    def run(self, edit):
-        process_view_filetype(self.view)
-
-
-class DetectFiletypeEventListener(EventListener):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def on_load(self, view):
-        process_view_filetype(view)
-
-    def on_post_save(self, view):
-        if get_setting('on_post_save'):
-            process_view_filetype(view)
