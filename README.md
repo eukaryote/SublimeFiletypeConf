@@ -28,6 +28,7 @@ that allows me to specify the filetype as just ```python``` rather than the
 verbose ```Packages/Python/Python.tmLanguage```. Plus, it gives me an excuse to
 play with the SublimeText API for the first time.
 
+
 Status
 ======
 
@@ -45,6 +46,19 @@ I then symlinked that repo directory to
 ```
 ~/.config/sublime-text-3/Packages/SublimeFiletypeConf
 ```
+
+Key Binding and Command
+=======================
+
+The default key binding to check a file for a filetype snippet and apply it is
+```ctrl+shift+d``` on Linux and Windows, and `super+shift+d` on OS X, but it
+can easily be changed in the user keybinding settings.
+
+There is also a command available that does the same check-and-apply process.
+If you open the ```Command Palette```, typing ```Detect``` should narrow
+down the options to the command, which is titled
+```SublimeFiletypeConf: Detect Filetype```.
+
 
 Settings
 ========
