@@ -65,14 +65,14 @@ Settings
 
 All the builtin SublimeText syntax types should be supported. See the
 ```default_filetype_package_map``` in the
-```SublimeFiletypeConf.sublime-settings``` file for those mappings.
+```filetypeconf.sublime-settings``` file for those mappings.
 
 The custom settings described below may be added to the user settings
 file for this plugin, which will be located in ```Packages/User```. On
 my Linux setup, this file is located at:
 
 ```
-~/.config/sublime-text-3/Packages/User/SublimeFiletypeConf.sublime-settings
+~/.config/sublime-text-3/Packages/User/filetypeconf.sublime-settings
 ```
 
 user_filetype_package_map

@@ -1,3 +1,3 @@
 [
-    { "caption": "SublimeFiletypeConf: Detect Filetype", "command": "detect_filetype" }
+    { "caption": "Sublime Filetype Conf: Detect Filetype", "command": "detect_filetype" }
 ]

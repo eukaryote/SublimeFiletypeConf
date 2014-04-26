@@ -12,17 +12,17 @@
 				"children":
 				[
 					{
-						"caption": "Sublime Filetype Conf",
+						"caption": "Filetype Conf",
 						"children":
 						[
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/SublimeFiletypeConf/SublimeFiletypeConf.sublime-settings"},
+								"args": {"file": "${packages}/SublimeFiletypeConf/filetypeconf.sublime-settings"},
 								"caption": "Settings – Default"
 							},
 							{
 								"command": "open_file",
-								"args": {"file": "${packages}/User/SublimeFiletypeConf.sublime-settings"},
+								"args": {"file": "${packages}/User/filetypeconf.sublime-settings"},
 								"caption": "Settings – User"
 							},
 							{ "caption": "-" },
