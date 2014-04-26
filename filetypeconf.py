@@ -32,13 +32,9 @@ class DetectFiletypeEventListener(EventListener):
             process_view_filetype(view)
 
 
-def load_settings():
-    filename = __name__.split('.')[-1] + '.sublime-settings'
-    return sublime.load_settings(filename)
-
-
 def get_setting(name, default=None):
-    return load_settings().get(name, default)
+    filename = __name__.split('.')[-1] + '.sublime-settings'
+    return sublime.load_settings(filename).get(name, default)
 
 
 def parse_filetype(view):
@@ -76,15 +72,12 @@ def filetype_to_path(filetype):
     return package or filetype
 
 
-def update_filetype(view, filetype):
+def process_view_filetype(view):
+    filetype = parse_filetype(view)
+    if not filetype:
+        return
     new_filetype_path = filetype_to_path(filetype)
     # only set the syntax if it would change it from the current syntax
     curr_filetype_path = view.settings().get('syntax')
     if new_filetype_path and new_filetype_path != curr_filetype_path:
         view.set_syntax_file(new_filetype_path)
-
-
-def process_view_filetype(view):
-    filetype = parse_filetype(view)
-    if filetype:
-        update_filetype(view, filetype)
